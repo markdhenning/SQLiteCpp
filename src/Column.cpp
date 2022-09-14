@@ -74,6 +74,45 @@ double Column::getDouble() const noexcept
     return sqlite3_column_double(mStmtPtr.get(), mIndex);
 }
 
+// Return the integer value of the column specified by its index starting at 0 with default value
+int32_t Column::getInt(int32_t nullValue) const noexcept
+{
+    if (isNull()) return nullValue;
+    return getInt();
+}
+
+// Return the unsigned integer value of the column specified by its index starting at 0 with default value
+uint32_t Column::getUInt(uint32_t nullValue) const noexcept
+{
+    if (isNull()) return nullValue;
+    return getUInt();
+}
+
+// Return the 64 bits integer value of the column specified by its index starting at 0 with default value
+int64_t Column::getInt64(int64_t nullValue) const noexcept
+{
+    if (isNull()) return nullValue;
+    return getInt64();
+}
+
+// Return the double value of the column specified by its index starting at 0 with default value
+double Column::getDouble(double nullValue) const noexcept
+{
+    if (isNull()) return nullValue;
+    return getDouble();
+}
+
+std::string  Column::getString(const char* nullValue)
+{
+    if (isNull()) return nullValue;
+    return getString();
+}
+std::string  Column::getString(const std::string& nullValue)
+{
+    if (isNull()) return nullValue;
+    return getString();
+}
+
 // Return a pointer to the text value (NULL terminated string) of the column specified by its index starting at 0
 const char* Column::getText(const char* apDefaultValue /* = "" */) const noexcept
 {

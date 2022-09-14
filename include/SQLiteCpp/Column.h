@@ -85,6 +85,17 @@ public:
     int64_t     getInt64() const noexcept;
     /// Return the double (64bits float) value of the column
     double      getDouble() const noexcept;
+    /// Return the integer value of the column with a default for null.
+    int32_t     getInt(int32_t nullValue) const noexcept;
+    /// Return the 32bits unsigned integer value of the column with a default for null
+    /// (note that SQLite3 does not support unsigned 64bits).
+    uint32_t    getUInt(uint32_t nullValue) const noexcept;
+    /// Return the 64bits integer value of the column with a default for null
+    /// (note that SQLite3 does not support unsigned 64bits).
+    int64_t     getInt64(int64_t nullValue) const noexcept;
+    /// Return the double (64bits float) value of the column with a default for null.
+    double      getDouble(double nullValue) const noexcept;
+
     /**
      * @brief Return a pointer to the text value (NULL terminated string) of the column.
      *
@@ -106,6 +117,8 @@ public:
      */
     std::string getString() const;
 
+    std::string getString(const char* nullValue);
+    std::string getString(const std::string& nullValue);
     /**
      * @brief Return the type of the value of the column
      *
